@@ -39,14 +39,16 @@ namespace API.Middleware
                 var Response = _env.IsDevelopment()
                 ? new ApiException((int)HttpStatusCode.InternalServerError,
                 ex.Message, ex.StackTrace.ToString())
-                : new ApiException((int)HttpStatusCode.InternalServerError);
+                //: new ApiException((int)HttpStatusCode.InternalServerError);
+                : new ApiException((int)HttpStatusCode.InternalServerError,
+                ex.Message, ex.StackTrace.ToString());
 
                 var options = new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 };
 
-                var json = JsonSerializer.Serialize(Response,options);
+                var json = JsonSerializer.Serialize(Response, options);
 
                 await context.Response.WriteAsync(json);
             }

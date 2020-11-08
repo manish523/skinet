@@ -1,19 +1,20 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { IfStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IBrand } from '../shared/models/brand';
 import { IPagination, Pagination } from '../shared/models/pagination';
 import { IType } from '../shared/models/productType';
-import { delay, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ShopParams } from '../shared/models/shopParams';
 import { IProduct } from '../shared/models/product';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopService {
-  baseUrl = 'https://localhost:5001/api/';
+  // baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
   products: IProduct[] = [];
   brands: IBrand[] = [];
   types: IType[] = [];
